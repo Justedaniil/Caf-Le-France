@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Café Le France - Menu</title>
+  <style>
+    /* Palette principale */
+    :root {
+      --rouge: #b71c1c;
+      --jaune-pale: #fff9c4;
+      --texte: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--jaune-pale);
+      color: var(--texte);
+    }
+
+    header {
+      background: var(--rouge);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      border-bottom-left-radius: 50% 20%;
+      border-bottom-right-radius: 50% 20%;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .menu-section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .menu-category {
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .menu-category:hover {
+      transform: scale(1.02);
+    }
+
+    .menu-category h2 {
+      color: var(--rouge);
+      border-bottom: 2px solid var(--jaune-pale);
+      padding-bottom: 0.5rem;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+    }
+
+    .item-name {
+      font-weight: 500;
+    }
+
+    .item-price {
+      color: var(--rouge);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--rouge);
+      color: white;
+      border-top-left-radius: 50% 20%;
+      border-top-right-radius: 50% 20%;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>☕ Le Café Le France 🍸</h1>
+    <p>Découvrez notre sélection de cafés, cocktails & gourmandises</p>
+  </header>
+
+  <main class="menu-section">
+    <section class="menu-category">
+      <h2>☕ Cafés</h2>
+      <div class="item"><span class="item-name">Espresso</span><span class="item-price">2€</span></div>
+      <div class="item"><span class="item-name">Cappuccino</span><span class="item-price">3.5€</span></div>
+      <div class="item"><span class="item-name">Latte Macchiato</span><span class="item-price">4€</span></div>
+    </section>
+
+    <section class="menu-category">
+      <h2>🍹 Cocktails</h2>
+      <div class="item"><span class="item-name">Mojito</span><span class="item-price">7€</span></div>
+      <div class="item"><span class="item-name">Spritz</span><span class="item-price">6.5€</span></div>
+      <div class="item"><span class="item-name">Margarita</span><span class="item-price">8€</span></div>
+    </section>
+
+    <section class="menu-category">
+      <h2>🍰 Gourmandises</h2>
+      <div class="item"><span class="item-name">Tarte au citron</span><span class="item-price">4.5€</span></div>
+      <div class="item"><span class="item-name">Brownie chocolat</span><span class="item-price">3.5€</span></div>
+      <div class="item"><span class="item-name">Crème brûlée</span><span class="item-price">5€</span></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Le Café Le France - Tous droits réservés</p>
+  </footer>
+
+  <script>
+    // Exemple simple d'obfuscation : message dans la console
+    console.log("Bienvenue sur le site du Café Le France ✨");
+    // On peut aussi minifier/obfusquer ce JS lors de la mise en production
+  </script>
+</body>
+</html>

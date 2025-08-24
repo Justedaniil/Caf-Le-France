@@ -62,6 +62,82 @@
 
     .sizes{display:flex;flex-wrap:wrap;gap:.35rem .5rem}
     .chip{background:var(--gris);border-radius:.5rem;padding:.2rem .5rem;font-size:.86rem}
+    .quick-carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Piste du carrousel en mobile */
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-carousel a {
+  flex: 0 0 auto;
+  text-decoration: none;
+  background: #f3f3f3;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #333;
+  white-space: nowrap;
+  transition: background 0.3s;
+}
+.quick-carousel a:hover {
+  background: #e0e0e0;
+}
+
+/* Boutons navigation */
+.carousel-btn {
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background 0.3s;
+}
+.carousel-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Version Desktop : grille */
+@media (min-width: 768px) {
+  .quick-carousel {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    overflow: visible; /* plus de scroll */
+    width: 100%;
+  }
+  .quick-carousel a {
+    justify-self: center;
+    flex: unset;
+    white-space: normal;
+    text-align: center;
+  }
+  .carousel-btn {
+    display: none; /* flèches cachées en desktop */
+  }
+}
 
     footer{margin:2rem 0 1rem;text-align:center;color:#555}
 
@@ -82,20 +158,27 @@
   </header>
 
   <main>
-    <nav class="quick" aria-label="Raccourcis catégories">
-      <a href="#bieres">Bières</a>
-      <a href="#bieres-bouteilles">Bières bouteilles</a>
-      <a href="#spiritueux">Spiritueux</a>
-      <a href="#aperitifs">Apéritifs</a>
-      <a href="#digestifs">Digestifs</a>
-      <a href="#boissons-froides">Boissons fraîches</a>
-      <a href="#jus-fruits">Jus & pressés</a>
-      <a href="#cocktails">Cocktails</a>
-      <a href="#chaudes">Boissons chaudes</a>
-      <a href="#thes">Thés & infusions</a>
-      <a href="#glaces">Glaces</a>
-      <a href="#gaufres">Gaufres & crêpes</a>
+    <nav class="quick-carousel" aria-label="Raccourcis catégories">
+      <button class="carousel-btn left" aria-label="Défiler à gauche">‹</button>
+      
+      <div class="carousel-track">
+        <a href="#bieres">Bières</a>
+        <a href="#bieres-bouteilles">Bières bouteilles</a>
+        <a href="#spiritueux">Spiritueux</a>
+        <a href="#aperitifs">Apéritifs</a>
+        <a href="#digestifs">Digestifs</a>
+        <a href="#boissons-froides">Boissons fraîches</a>
+        <a href="#jus-fruits">Jus & pressés</a>
+        <a href="#cocktails">Cocktails</a>
+        <a href="#chaudes">Boissons chaudes</a>
+        <a href="#thes">Thés & infusions</a>
+        <a href="#glaces">Glaces</a>
+        <a href="#gaufres">Gaufres & crêpes</a>
+      </div>
+      
+      <button class="carousel-btn right" aria-label="Défiler à droite">›</button>
     </nav>
+    
 
     <!-- BIÈRES PRESSION / DRAFT -->
     <section class="card" id="bieres">
@@ -389,8 +472,17 @@
       <p>© 2025 Le Café Le France — L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</p>
       </footer>
   </main>
-
   <script>
+    const track = document.querySelector('.carousel-track');
+    const btnLeft = document.querySelector('.carousel-btn.left');
+    const btnRight = document.querySelector('.carousel-btn.right');
+  
+    btnLeft.addEventListener('click', () => {
+      track.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+    btnRight.addEventListener('click', () => {
+      track.scrollBy({ left: 200, behavior: 'smooth' });
+    });
     // Recherche temps réel
     const input = document.getElementById('q');
     const sections = Array.from(document.querySelectorAll('.card'));

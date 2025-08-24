@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Le Café Le France — Carte & Menu</title>
+  <meta name="theme-color" content="#b71c1c" />
+  <meta name="format-detection" content="telephone=no" />
+  <style>
+    :root{
+      --rouge:#b71c1c;      /* rouge profond */
+      --jaune:#fff9c4;      /* jaune pâle */
+      --encre:#2b2b2b;
+      --blanc:#ffffff;
+      --gris:#f6f6f6;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--encre);
+      background:linear-gradient(180deg,var(--jaune),#fff);
+      min-height:100svh;
+    }
+    header{
+      position:sticky;top:0;z-index:50;
+      background:linear-gradient(135deg,var(--rouge),#8d1010);
+      color:var(--blanc);
+      padding:1.2rem 1rem 1rem;
+      border-bottom-left-radius:2rem; border-bottom-right-radius:2rem;
+      box-shadow:0 10px 25px rgba(0,0,0,.15);
+    }
+    .brand{display:flex;align-items:center;gap:.75rem;justify-content:center}
+    .brand h1{margin:0;font-size:1.9rem;letter-spacing:.4px}
+    .tag{opacity:.9;margin:.35rem 0 0;text-align:center}
+    .toolbar{display:grid;grid-template-columns:1fr auto;gap:.75rem;margin-top:.9rem}
+    .search{width:100%;border:0;border-radius:.9rem;padding:.85rem 1rem;font-size:1rem}
+    .btn{appearance:none;border:0;border-radius:.9rem;padding:.85rem 1rem;font-weight:600}
+    .btn-ghost{background:rgba(255,255,255,.15);color:#fff}
+
+    main{max-width:1000px;margin:1.2rem auto;padding:0 1rem 2rem}
+
+    nav.quick{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem}
+    nav.quick a{background:var(--gris);border-radius:999px;padding:.5rem .85rem;text-decoration:none;color:var(--encre);font-weight:600;font-size:.9rem}
+
+    section.card{background:var(--blanc);border-radius:1rem;overflow:hidden;margin:1rem 0;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .cover{width:100%;height:190px;object-fit:cover;background:#ddd}
+    .pad{padding:1rem 1rem 1.25rem}
+    h2{margin:0 0 .5rem;color:var(--rouge)}
+    .note{margin:.35rem 0 1rem;font-size:.95rem;color:#555}
+
+    details{border:1px solid #eee;border-radius:.75rem;margin:.6rem 0;background:#fff}
+    summary{list-style:none;padding:.8rem 1rem;cursor:pointer;font-weight:700}
+    summary::-webkit-details-marker{display:none}
+    details[open] summary{border-bottom:1px solid #eee}
+
+    .grid{display:grid;grid-template-columns:1fr auto;gap:.5rem 1rem;align-items:center;padding:.65rem 1rem}
+    .grid:nth-child(odd){background:#fafafa}
+    .title{font-weight:600}
+    .muted{font-size:.92rem;color:#666}
+    .price{font-weight:800;color:var(--rouge)}
+
+    .sizes{display:flex;flex-wrap:wrap;gap:.35rem .5rem}
+    .chip{background:var(--gris);border-radius:.5rem;padding:.2rem .5rem;font-size:.86rem}
+
+    footer{margin:2rem 0 1rem;text-align:center;color:#555}
+
+    /* Décourager la copie (limité côté client) */
+    body.noselect{ -webkit-user-select:none; user-select:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div style="font-size:1.6rem">☕🍸</div>
+      <h1>Le Café Le France</h1>
+    </div>
+    <p class="tag">Carte officielle — thème rouge & jaune pâle</p>
+    <div class="toolbar">
+      <input id="q" class="search" type="search" placeholder="Rechercher un produit (ex. Mojito, Affligen, thé)" aria-label="Rechercher" />
+      <button class="btn btn-ghost" id="toggleCopy">Anti‑copie</button>
+    </div>
+  </header>
+
+  <main>
+    <nav class="quick" aria-label="Raccourcis catégories">
+      <a href="#bieres">Bières</a>
+      <a href="#bieres-bouteilles">Bières bouteilles</a>
+      <a href="#spiritueux">Spiritueux</a>
+      <a href="#aperitifs">Apéritifs</a>
+      <a href="#digestifs">Digestifs</a>
+      <a href="#boissons-froides">Boissons fraîches</a>
+      <a href="#jus-fruits">Jus & pressés</a>
+      <a href="#cocktails">Cocktails</a>
+      <a href="#chaudes">Boissons chaudes</a>
+      <a href="#thes">Thés & infusions</a>
+      <a href="#glaces">Glaces</a>
+      <a href="#gaufres">Gaufres & crêpes</a>
+    </nav>
+
+    <!-- BIÈRES PRESSION / DRAFT -->
+    <section class="card" id="bieres">
+      <img class="cover" src="images/bieres.jpg" alt="Bières pression" />
+      <div class="pad">
+        <h2>🍺 Bières pression (Draft)</h2>
+        <p class="note">Degré indiqué quand disponible. Formats: Boc 12,5 cl / 25 cl / Sérieux 50 cl.</p>
+
+        <details open>
+          <summary>Nos pressions</summary>
+          <div class="grid"><div><div class="title">Bière pression</div><div class="muted">5,5° — Boc 12,5 cl / 25 cl / 50 cl</div></div><div class="price">2,00 € / 2,80 € / 5,60 €</div></div>
+          <div class="grid"><div><div class="title">Bière du moment · brassée dans la région</div><div class="muted">Boc 12,5 cl / 25 cl / 50 cl</div></div><div class="price">2,50 € / 4,00 € / 7,00 €</div></div>
+          <div class="grid"><div><div class="title">Gallia</div><div class="muted">4,2° — Boc 12,5 cl / 25 cl / 50 cl</div></div><div class="price">2,40 € / 3,80 € / 7,60 €</div></div>
+          <div class="grid"><div><div class="title">Affligen Blanche</div><div class="muted">4,8° — Boc 12,5 cl / 25 cl / 50 cl</div></div><div class="price">2,40 € / 3,80 € / 7,60 €</div></div>
+          <div class="grid"><div><div class="title">Affligen Ambrée</div><div class="muted">6,7° — Boc 12,5 cl / 25 cl / 50 cl</div></div><div class="price">2,50 € / 4,50 € / 9,00 €</div></div>
+          <div class="grid"><div><div class="title">Affligen Blonde</div><div class="muted">6,8° — Boc 12,5 cl / 25 cl / 50 cl</div></div><div class="price">2,40 € / 3,80 € / 7,60 €</div></div>
+        </details>
+
+        <details>
+          <summary>Spécialités à la bière</summary>
+          <div class="grid"><div><div class="title">Panaché</div><div class="muted">25 cl</div></div><div class="price">2,80 €</div></div>
+          <div class="grid"><div><div class="title">Demi sirop</div><div class="muted">25 cl</div></div><div class="price">3,00 €</div></div>
+          <div class="grid"><div><div class="title">Monaco</div><div class="muted">25 cl</div></div><div class="price">3,00 €</div></div>
+          <div class="grid"><div><div class="title">Picon Bière</div><div class="muted">Boc 12,5 cl / 25 cl / 50 cl</div></div><div class="price">2,40 € / 3,60 € / 7,20 €</div></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- BIÈRES BOUTEILLES -->
+    <section class="card" id="bieres-bouteilles">
+      <img class="cover" src="images/bieres-bouteilles.jpg" alt="Bières en bouteilles" />
+      <div class="pad">
+        <h2>🍻 Bières bouteilles (33 cl)</h2>
+        <div class="grid"><div class="title">Heineken (sans alcool) — 0°</div><div class="price">3,00 €</div></div>
+        <div class="grid"><div class="title">Heineken Blonde — 5°</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Pelforth Brune — 6,5°</div><div class="price">4,50 €</div></div>
+        <div class="grid"><div class="title">Leffe — 6,6°</div><div class="price">4,00 €</div></div>
+        <div class="grid"><div class="title">Desperado Tequila — 5,9°</div><div class="price">4,50 €</div></div>
+        <div class="grid"><div class="title">La Chouffe — 8°</div><div class="price">5,00 €</div></div>
+        <div class="grid"><div class="title">Paix Dieu — 10°</div><div class="price">5,00 €</div></div>
+        <div class="grid"><div class="title">Bière du moment · brassée dans la région</div><div class="price">5,00 €</div></div>
+      </div>
+    </section>
+
+    <!-- SPIRITUEUX: WHISKY / RHUM / TEQUILA / GIN -->
+    <section class="card" id="spiritueux">
+      <img class="cover" src="images/spiritueux.jpg" alt="Whisky, rhum, tequila, gin" />
+      <div class="pad">
+        <h2>🥃 Spiritueux (4 cl sauf mention)</h2>
+        <details open>
+          <summary>Whisky</summary>
+          <div class="grid"><div class="title">Cutty Sark</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">Jack Daniel’s</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">Maker’s Mark (Kentucky — vanille/caramel)</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">Cardhu (Écossais — fruité et rond)</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Chivas (Écossais)</div><div class="price">6,00 €</div></div>
+        </details>
+        <details>
+          <summary>Rhum</summary>
+          <div class="grid"><div class="title">Captain Morgan</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">Don Papa</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">Kraken</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">J‑Bally</div><div class="price">8,00 €</div></div>
+          <div class="grid"><div class="title">Plantation XO</div><div class="price">8,00 €</div></div>
+          <div class="grid"><div class="title">Saint James Royal Ambré</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">Saint James Impérial Blanc</div><div class="price">6,00 €</div></div>
+        </details>
+        <details>
+          <summary>Tequila</summary>
+          <div class="grid"><div class="title">San José</div><div class="price">6,00 €</div></div>
+        </details>
+        <details>
+          <summary>Gin</summary>
+          <div class="grid"><div class="title">Gibson’s</div><div class="price">6,00 €</div></div>
+          <div class="grid"><div class="title">Gibson’s Pink</div><div class="price">6,00 €</div></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- APERITIFS -->
+    <section class="card" id="aperitifs">
+      <img class="cover" src="images/aperitifs.jpg" alt="Apéritifs" />
+      <div class="pad">
+        <h2>🍷 Apéritifs</h2>
+        <div class="grid"><div class="title">Pastis 51 · Ricard · Casanis (4 cl)</div><div class="price">2,50 €</div></div>
+        <div class="grid"><div class="title">BABY Whisky, Rhum, Gin, Vodka (2 cl)</div><div class="price">3,00 €</div></div>
+        <div class="grid"><div class="title">BABY Jack Daniel’s (2 cl)</div><div class="price">3,00 €</div></div>
+        <div class="grid"><div class="title">Cristal (avec ou sans alcool) (2 cl)</div><div class="price">2,50 €</div></div>
+        <div class="grid"><div class="title">Palermo (6 cl)</div><div class="price">2,50 €</div></div>
+        <div class="grid"><div class="title">Martini Rouge (6 cl)</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Martini Blanc (6 cl)</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Muscat (12,5 cl)</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Suze (6 cl)</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Porto (6 cl)</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Kir (Cassis, Pêche, Mûre, Framboise) (12,5 cl)</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Vin au verre du zinc (Blanc, Rosé, Rouge) (12,5 cl)</div><div class="price">2,20 €</div></div>
+      </div>
+    </section>
+
+    <!-- DIGESTIFS -->
+    <section class="card" id="digestifs">
+      <img class="cover" src="images/digestifs.jpg" alt="Digestifs" />
+      <div class="pad">
+        <h2>🥂 Digestifs (4 cl)</h2>
+        <div class="grid"><div class="title">Cognac</div><div class="price">6,00 €</div></div>
+        <div class="grid"><div class="title">Calvados</div><div class="price">4,00 €</div></div>
+        <div class="grid"><div class="title">Marie Brizard</div><div class="price">4,00 €</div></div>
+        <div class="grid"><div class="title">Baileys</div><div class="price">4,00 €</div></div>
+        <div class="grid"><div class="title">Malibu</div><div class="price">4,00 €</div></div>
+        <div class="grid"><div class="title">Limoncello</div><div class="price">4,00 €</div></div>
+        <div class="grid"><div class="title">Get 27</div><div class="price">4,00 €</div></div>
+        <div class="grid"><div class="title">Get 31</div><div class="price">4,00 €</div></div>
+      </div>
+    </section>
+
+    <!-- BOISSONS FRAICHES -->
+    <section class="card" id="boissons-froides">
+      <img class="cover" src="images/softs.jpg" alt="Boissons fraîches" />
+      <div class="pad">
+        <h2>🥤 Boissons fraîches</h2>
+        <div class="grid"><div class="title">Limonade</div><div class="price">2,50 €</div></div>
+        <div class="grid"><div class="title">Citronnade Maison</div><div class="price">3,50 €</div></div>
+        <div class="grid"><div class="title">Diabolo</div><div class="price">2,70 €</div></div>
+        <div class="grid"><div class="title">Sirop</div><div class="price">2,30 €</div></div>
+        <details>
+          <summary>Parfums sirops</summary>
+          <div class="pad" style="padding-top:0">
+            <div class="sizes">
+              <span class="chip">Mûre</span><span class="chip">Kiwi</span><span class="chip">Citron</span><span class="chip">Menthe</span><span class="chip">Violette</span><span class="chip">Anis</span><span class="chip">Caramel</span><span class="chip">Pamplemousse rosé</span><span class="chip">Cassis</span><span class="chip">Cerise</span><span class="chip">Orgeat</span><span class="chip">Fraise</span><span class="chip">Framboise</span><span class="chip">Citron Pack</span><span class="chip">Grenadine</span><span class="chip">Pêche</span><span class="chip">Pulco Orange</span><span class="chip">Pulco Citron</span><span class="chip">Gambetta</span>
+            </div>
+          </div>
+        </details>
+        <div class="grid"><div class="title">Perrier (33 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Vittel, Vichy (25 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Schweppes (25 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Schweppes Agrumes (25 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Orangina (25 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Oasis (25 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Fanta Orange (25 cl)</div><div class="price">3,30 €</div></div>
+        <div class="grid"><div class="title">Fuze Tea Pêche (25 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Sprite (25 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Coca · Coca Cherry · Coca Zéro (33 cl)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Lait Sirop</div><div class="price">2,50 €</div></div>
+        <div class="grid"><div class="title">Supplément Sirop</div><div class="price">0,20 €</div></div>
+        <div class="grid"><div class="title">Supplément tranche de citron</div><div class="price">0,20 €</div></div>
+      </div>
+    </section>
+
+    <!-- JUS & PRESSES -->
+    <section class="card" id="jus-fruits">
+      <img class="cover" src="images/jus.jpg" alt="Jus de fruits et pressés" />
+      <div class="pad">
+        <h2>🍊 Fruits pressés & jus</h2>
+        <details open>
+          <summary>Fruits pressés</summary>
+          <div class="grid"><div class="title">Orange</div><div class="price">4,00 €</div></div>
+          <div class="grid"><div class="title">Citron</div><div class="price">4,00 €</div></div>
+        </details>
+        <details>
+          <summary>Jus de fruits Granini (25 cl)</summary>
+          <div class="grid"><div class="title">Abricot · ACE · Banane · Ananas · Fraise · Orange · Pamplemousse · Pomme · Pêche · Tomate</div><div class="price">3,20 €</div></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- COCKTAILS -->
+    <section class="card" id="cocktails">
+      <img class="cover" src="images/cocktails.jpg" alt="Cocktails" />
+      <div class="pad">
+        <h2>🍹 Cocktails</h2>
+        <details open>
+          <summary>Avec alcool — 8,50 €</summary>
+          <div class="grid"><div><div class="title">Mojito</div><div class="muted">Menthe fraîche, citron vert, rhum 4 cl, sucre de canne, eau gazeuse, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Mojito Fruits rouges</div><div class="muted">Menthe, citron vert, rhum 4 cl, sucre de canne, framboises, fraises, eau gazeuse, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Mojito Passion</div><div class="muted">Menthe, citron vert, rhum 4 cl, sirop fruit de la passion, eau gazeuse, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Piña Colada</div><div class="muted">Rhum 6 cl, jus d’ananas, crème de coco, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Spritz</div><div class="muted">Apérol, Prosecco, eau pétillante, orange, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Spritz Violette</div><div class="muted">Liqueur de violette, Prosecco, eau pétillante, myrtilles, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Hugo Spritz</div><div class="muted">Liqueur de fleur de sureau, Prosecco, eau pétillante, citron vert, menthe, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Moscow Mule</div><div class="muted">Vodka 6 cl, jus de citron vert, ginger beer, glace pilée</div></div><div class="price">8,50 €</div></div>
+          <div class="grid"><div><div class="title">Cocktail du jour</div><div class="muted">Selon l’inspiration</div></div><div class="price">8,50 €</div></div>
+        </details>
+        <details>
+          <summary>Sans alcool — 6,00 €</summary>
+          <div class="grid"><div><div class="title">Virgin Mojito</div><div class="muted">Menthe, citron vert, sirop de rhum, sucre de canne, eau gazeuse, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Virgin Mojito Fruits rouges</div><div class="muted">Menthe, citron vert, sirop de rhum, sucre de canne, framboises, fraises, eau gazeuse, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Virgin Mojito Passion</div><div class="muted">Menthe, citron vert, sirop de rhum, sucre de canne, sirop passion, eau gazeuse, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Virgin Piña Colada</div><div class="muted">Sirop de rhum, jus d’ananas, crème de coco, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Virgin Spritz</div><div class="muted">Sirop d’orange pour spritz, eau pétillante, orange, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Virgin Hugo Spritz</div><div class="muted">Sirop de fleur de sureau, eau pétillante, citron vert, menthe, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Virgin Spritz Violette</div><div class="muted">Sirop de violette, eau pétillante, myrtilles, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Virgin Moscow Mule</div><div class="muted">Sirop de sucre de canne, jus de citron vert, citron vert, ginger beer, glace pilée</div></div><div class="price">6,00 €</div></div>
+          <div class="grid"><div><div class="title">Sex on the Beach (sans alcool)</div><div class="muted">Jus de canneberge, jus d’orange, jus d’ananas, sirop de grenadine, orange</div></div><div class="price">6,00 €</div></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CHAUDES -->
+    <section class="card" id="chaudes">
+      <img class="cover" src="images/chaudes.jpg" alt="Boissons chaudes" />
+      <div class="pad">
+        <h2>☕ Boissons chaudes</h2>
+        <div class="grid"><div class="title">Café · Café allongé · Décaféiné · Décaféiné allongé</div><div class="price">1,60 €</div></div>
+        <div class="grid"><div class="title">Double café · Double décaféiné</div><div class="price">3,20 €</div></div>
+        <div class="grid"><div class="title">Noisette · Décaféiné noisette</div><div class="price">1,60 €</div></div>
+        <div class="grid"><div class="title">Petit crème · Petit chocolat</div><div class="price">2,00 €</div></div>
+        <div class="grid"><div class="title">Grand crème · Grand chocolat</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Bossu</div><div class="price">2,60 €</div></div>
+        <div class="grid"><div class="title">Chocolat viennois</div><div class="price">3,80 €</div></div>
+        <div class="grid"><div class="title">Café frappé (café, sirop d’orgeat)</div><div class="price">3,60 €</div></div>
+        <div class="grid"><div class="title">Macchiato (Vanille · Noisette · Caramel)</div><div class="price">3,80 €</div></div>
+        <div class="grid"><div class="title">Pot de lait</div><div class="price">0,20 €</div></div>
+      </div>
+    </section>
+
+    <!-- THES & INFUSIONS -->
+    <section class="card" id="thes">
+      <img class="cover" src="images/thes.jpg" alt="Thés et infusions" />
+      <div class="pad">
+        <h2>🍵 Thés & infusions (2,80 €)</h2>
+        <div class="grid"><div class="title">Thé vert Menthe</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Thé vert de Chine</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Thé vert Gingembre / Citron</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Thé vert Détox</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Thé noir Ceylan</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Thé noir Agrume</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Thé noir Earl Grey</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Thé noir Fruits rouges</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Verveine</div><div class="price">2,80 €</div></div>
+        <div class="grid"><div class="title">Verveine Menthe</div><div class="price">2,80 €</div></div>
+      </div>
+    </section>
+
+    <!-- GLACES -->
+    <section class="card" id="glaces">
+      <img class="cover" src="images/glaces.jpg" alt="Glaces et coupes" />
+      <div class="pad">
+        <h2>🍨 Glaces</h2>
+        <details open>
+          <summary>Coupes à la demande</summary>
+          <div class="grid"><div class="title">1 boule</div><div class="price">2,50 €</div></div>
+          <div class="grid"><div class="title">2 boules</div><div class="price">4,50 €</div></div>
+          <div class="grid"><div class="title">3 boules</div><div class="price">6,50 €</div></div>
+          <div class="grid"><div class="title">Supplément Chantilly</div><div class="price">1,00 €</div></div>
+          <div class="grid"><div class="title">Supplément Coulis</div><div class="price">1,00 €</div></div>
+          <div class="muted" style="padding:0 1rem 1rem">Parfums glaces : Vanille, Chocolat, Café, Caramel, Rhum‑Raisin, Pistache, Noix de coco, Marron, Pêche<br/>Parfums sorbets : Fraise, Framboise, Cassis, Ananas, Citron, Citron vert, Mangue, Mandarine, Poire</div>
+        </details>
+        <details>
+          <summary>Les coupes — 8,50 €</summary>
+          <div class="grid"><div class="title">Dame Blanche</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Chocolat Liégeois</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Caramel Liégeois</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Café Liégeois</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Pêche Melba</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Fruit Rouge</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Banana Split</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Coupe Cévenole</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Bounty</div><div class="price">8,50 €</div></div>
+          <div class="grid"><div class="title">Agrume</div><div class="price">8,50 €</div></div>
+        </details>
+        <details>
+          <summary>Les coupes alcoolisées — 9,50 €</summary>
+          <div class="grid"><div class="title">Colonel (3 boules citron vert, vodka 6 cl)</div><div class="price">9,50 €</div></div>
+          <div class="grid"><div class="title">Poire (3 boules sorbet poire, Williamine 6 cl, Chantilly)</div><div class="price">9,50 €</div></div>
+          <div class="grid"><div class="title">After Eight (3 boules menthe, Get 27 6 cl, Chantilly)</div><div class="price">9,50 €</div></div>
+          <div class="grid"><div class="title">Limoncello (2 boules citron, 1 mandarine, Limoncello 6 cl, Chantilly)</div><div class="price">9,50 €</div></div>
+          <div class="grid"><div class="title">Mojito (3 boules glace mojito, rhum 6 cl, Chantilly)</div><div class="price">9,50 €</div></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- GAUFRES & CREPES -->
+    <section class="card" id="gaufres">
+      <img class="cover" src="images/gaufres.jpg" alt="Gaufres et crêpes" />
+      <div class="pad">
+        <h2>🧇 Gaufres & crêpes</h2>
+        <div class="grid"><div class="title">Sucre glace</div><div class="price">3,00 €</div></div>
+        <div class="grid"><div class="title">Nutella</div><div class="price">4,50 €</div></div>
+        <div class="grid"><div class="title">Cévenole (crème de marron)</div><div class="price">4,50 €</div></div>
+        <div class="grid"><div class="title">Supplément Chantilly</div><div class="price">1,00 €</div></div>
+        <details>
+          <summary>Gourmandes — 7,50 €</summary>
+          <div class="grid"><div class="title">Coco — Nutella, 1 boule Vanille, coco râpé, Chantilly</div><div class="price">7,50 €</div></div>
+          <div class="grid"><div class="title">Banana — Nutella, banane, 1 boule Vanille, coulis chocolat, Chantilly</div><div class="price">7,50 €</div></div>
+          <div class="grid"><div class="title">Cévenole — Crème de marron, 1 boule Vanille, coulis caramel, Chantilly</div><div class="price">7,50 €</div></div>
+        </details>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Le Café Le France — L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</p>
+      <p style="font-size:.9rem">Placez vos images dans le dossier <strong>images/</strong> avec les mêmes noms que ci‑dessus (ex. <code>bieres.jpg</code>, <code>cocktails.jpg</code>, …).</p>
+    </footer>
+  </main>
+
+  <script>
+    // Recherche temps réel
+    const input = document.getElementById('q');
+    const sections = Array.from(document.querySelectorAll('.card'));
+    const rows = Array.from(document.querySelectorAll('.grid'));
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      rows.forEach(r=>{
+        const visible = r.textContent.toLowerCase().includes(q);
+        r.style.display = visible ? 'grid' : 'none';
+      });
+      // ouvrir sections qui contiennent des résultats
+      sections.forEach(s=>{
+        const has = Array.from(s.querySelectorAll('.grid')).some(r => r.style.display !== 'none');
+        s.style.display = has || q === '' ? '' : 'none';
+        // ouvrir les <details> si recherche en cours
+        s.querySelectorAll('details').forEach(d=>{ if(q && has) d.open = true; });
+      });
+    });
+
+    // Anti‑copie (décourage, ne protège pas totalement)
+    const btn = document.getElementById('toggleCopy');
+    let active = false;
+    btn.addEventListener('click', ()=>{
+      active = !active;
+      document.body.classList.toggle('noselect', active);
+      document.oncontextmenu = active ? () => false : null;
+      btn.textContent = active ? 'Anti‑copie activé' : 'Anti‑copie';
+    });
+  </script>
+</body>
+</html>

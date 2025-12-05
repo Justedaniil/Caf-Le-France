@@ -20,7 +20,7 @@
       --jaune:#fff9c4;
       --encre:#2b2b2b;
       --blanc:#ffffff;
-      --gris:#f6f6f6;
+      --gris:#a7a5a5;
     }
 
     /* =================== RESET & BASE =================== */
@@ -51,13 +51,18 @@
       margin-bottom:1rem;
       overflow:hidden;
     }
-    .carousel-track{
-      display:flex;
-      gap:.5rem;
-      overflow-x:auto;
-      scroll-behavior:smooth;
-      padding:.5rem 2rem;
-    }
+    .carousel-track {
+  display: flex;
+  gap: .5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: .5rem 2rem;
+  scrollbar-width: none; /* Firefox */
+}
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
     .carousel-track a{
       background:var(--rouge);
       color:var(--blanc);
@@ -81,20 +86,40 @@
     .carousel-btn.left{left:.2rem}
     .carousel-btn.right{right:.2rem}
 
-    /* =================== SECTIONS / CARDS =================== */
-    section.card{
-      background:var(--blanc);
-      border-radius:8px;
-      box-shadow:0 2px 5px rgba(0,0,0,.1);
-      margin-bottom:1rem;
-      overflow:hidden;
-    }
-    .cover{
-      height:100px;
-      background-size:cover;
-      background-position:center;
-    }
-    .pad{padding:1rem;}
+/* =================== SECTIONS / CARDS =================== */
+section.card {
+  position: relative;         /* nécessaire pour le positionnement absolu de l'image */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  height: 500px;             /* hauteur de la section, ajuste selon besoin */
+}
+
+/* Image de fond couvrant toute la section */
+.cover {
+  position: absolute;         /* superposée à la section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;              /* occupe toute la section */
+  object-fit: cover;         /* ajuste l'image sans la déformer */
+  z-index: 1;                /* en dessous du pad */
+}
+
+/* Contenu superposé */
+.pad {
+  position: relative;
+  z-index: 2;                /* au-dessus de l'image */
+  background: rgba(255, 255, 255, 0.8); /* semi-transparent pour lisibilité */
+  padding: 1.5rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 2rem;              /* laisse voir un peu l'image derrière */
+  border-radius: 10px;
+  max-height: calc(100% - 4rem); /* pour que le contenu ne dépasse pas la section */
+  overflow-y: auto;          /* scroll si nécessaire */
+}
 
     /* =================== TITRES / TEXTES =================== */
     h2{margin-top:0;color:var(--rouge);}
@@ -125,27 +150,28 @@ header {
 /* Logo */
 .header-container {
   display: flex;
-  align-items: center; /* centre verticalement logo + titre + barre */
-  justify-content: flex-start; /* alignement à gauche pour commencer */
+  align-items: center;       /* centre verticalement logo + titre + barre */
+  justify-content: flex-start; /* alignement à gauche */
   gap: 2rem;
-  margin-top: -1.5rem;
-  margin-left: -1.5rem;
-  margin-bottom: -1.5rem;
-  height: 100%;
+  padding: 1rem;             /* remplace les marges négatives pour plus de stabilité */
+  height: auto;              /* s’adapte au contenu */
   width: 100%;
   border-radius: 25px;
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* ombre douce */
+  overflow: hidden;          /* pour que l'image ne dépasse pas */
+  background: #ffffff00;          /* optionnel, pour bien voir le logo */
 }
 
 .header-container .cover {
-    width: 150%;
-  object-fit: cover;
+  width: auto;               /* taille naturelle du logo */
+  max-height: 80px;          /* limite la hauteur pour ne pas dépasser */
+  object-fit: contain;       /* garde les proportions sans déformer */
   transition: transform 0.3s ease;
   border-radius: 25px;
 }
 
 .header-container .cover:hover {
-  transform: scale(1.05);
+  transform: scale(1.05);   /* effet léger au survol */
 }
 
 /* Bloc titre */
